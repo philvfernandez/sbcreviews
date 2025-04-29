@@ -24,8 +24,9 @@ public class Book {
     private String author;
 
     @NotNull(message = "Year is required")
-    @Column(nullable = false)
+    @Column(name = "\"year\"", nullable = false)
     private Integer year;
+
 
     //Default constructor
     public Book() {
