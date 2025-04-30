@@ -12,7 +12,7 @@ import java.util.Objects;
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotBlank(message = "Title is required")
@@ -26,6 +26,7 @@ public class Book {
     @NotNull(message = "Year is required")
     @Column(name = "\"year\"", nullable = false)
     private Integer year;
+
 
 
     //Default constructor

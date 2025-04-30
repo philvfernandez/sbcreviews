@@ -3,10 +3,14 @@ package com.sbc.sbcreviews.service;
 import com.sbc.sbcreviews.exception.ResourceNotFoundException;
 import com.sbc.sbcreviews.model.Book;
 import com.sbc.sbcreviews.respository.BookRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
+@Transactional
 public class BookServiceImpl implements BookService {
 
     private final BookRepository bookRepository;
