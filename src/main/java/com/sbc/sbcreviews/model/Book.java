@@ -27,6 +27,9 @@ public class Book {
     @Column(name = "\"year\"", nullable = false)
     private Integer year;
 
+    @Column(name = "\"review\"")
+    private String review;
+
 
 
     //Default constructor
@@ -73,6 +76,14 @@ public class Book {
         this.year = year;
     }
 
+    public String getReview() {
+        return review;
+    }
+
+    public void setReview(String review) {
+        this.review = review;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -81,7 +92,8 @@ public class Book {
         return Objects.equals(id, book.id) &&
                 Objects.equals(title, book.title) &&
                 Objects.equals(author, book.author) &&
-                Objects.equals(year, book.year);
+                Objects.equals(year, book.year) &&
+                Objects.equals(review, book.review);
     }
 
     @Override
@@ -91,6 +103,7 @@ public class Book {
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", year=" + year +
+                ", review='" + review + '\'' +
                 '}';
     }
 }
