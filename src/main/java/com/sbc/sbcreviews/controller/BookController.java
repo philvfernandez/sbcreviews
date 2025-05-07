@@ -6,12 +6,13 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/books")
+@Controller
 public class BookController {
 
     private final BookService bookService;
@@ -21,38 +22,43 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @GetMapping
-    public ResponseEntity<List<Book>> getAllBook() {
+    @GetMapping("/getAllBooks")
+    public String getAllBook(Model model) {
         List<Book> books = bookService.getAllBooks();
-        return new ResponseEntity<>(books, HttpStatus.OK);
+        model.addAttribute("allBooks", books);
+        return "index.html";
     }
-
+/*
     @GetMapping("/{id}")
-    public ResponseEntity<Book> getBookById(Long id) {
+    public ResponseEntity<Book> getBookById(@PathVariable(value = "id") Long id) {
         Book book = bookService.getBookById(id);
         return new ResponseEntity<>(book, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Book> createBook(@Valid @RequestBody Book book) {
-        Book createdBook = bookService.createBook(book);
-        return new ResponseEntity<>(createdBook, HttpStatus.CREATED);
+    public String createBook(Model model) {
+        Book book = new Book();
+        model.addAttribute("book", book);
+        return "newbook";
+
+        //return new ResponseEntity<>(createdBook, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Book> updateBook(@PathVariable Long id, @Valid @RequestBody Book bookDetails) {
-        Book updatedBook = bookService.updateBook(id, bookDetails);
-        return new ResponseEntity<>(updatedBook, HttpStatus.OK);
+    public String updateBook(@PathVariable(value = "id") Long id, Model model) {
+        Book book = new Book();
+        model.addAttribute("book", book);
+        return "update";
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteBook(@PathVariable(value = "id") Long id) {
         bookService.deleteBook(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @GetMapping("/author/{author}")
-    public ResponseEntity<List<Book>> findBooksByAuthor(@PathVariable String author) {
+    public ResponseEntity<List<Book>> findBooksByAuthor(@PathVariable("author") String author) {
         List<Book> books = bookService.findBooksByAuthor(author);
         return new ResponseEntity<>(books, HttpStatus.OK);
     }
@@ -70,8 +76,9 @@ public class BookController {
     }
 
     @GetMapping("/count{author}")
-    public ResponseEntity<Long> countBooksByAuthor(@PathVariable String author) {
+    public ResponseEntity<Long> countBooksByAuthor(@PathVariable("author") String author) {
         long count = bookService.countBooksByAuthor(author);
         return new ResponseEntity<>(count, HttpStatus.OK);
     }
+ */
 }

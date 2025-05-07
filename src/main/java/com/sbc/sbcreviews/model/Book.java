@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.annotations.AttributeBinderType;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Objects;
 
@@ -12,7 +13,7 @@ import java.util.Objects;
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank(message = "Title is required")
@@ -37,11 +38,12 @@ public class Book {
     }
 
     //Parameterized constructor
-    public Book(Long id, String title, String author, Integer year) {
+    public Book(Long id, String title, String author, Integer year, String review) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.year = year;
+        this.review = review;
     }
 
     public Long getId() {
