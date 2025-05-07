@@ -2,7 +2,7 @@ package com.sbc.sbcreviews.controller;
 
 import com.sbc.sbcreviews.model.Book;
 import com.sbc.sbcreviews.service.BookService;
-import jakarta.validation.Valid;
+import com.sbc.sbcreviews.service.BookServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,26 +22,34 @@ public class BookController {
         this.bookService = bookService;
     }
 
+    @Autowired
+    private BookServiceImpl bookServiceImpl;
+
     @GetMapping("/getAllBooks")
     public String getAllBook(Model model) {
         List<Book> books = bookService.getAllBooks();
         model.addAttribute("allBooks", books);
         return "index.html";
     }
-/*
     @GetMapping("/{id}")
     public ResponseEntity<Book> getBookById(@PathVariable(value = "id") Long id) {
         Book book = bookService.getBookById(id);
         return new ResponseEntity<>(book, HttpStatus.OK);
     }
 
-    @PostMapping
+    @GetMapping("/addNewReview")
     public String createBook(Model model) {
         Book book = new Book();
-        model.addAttribute("book", book);
-        return "newbook";
+        model.addAttribute("allBooks", book);
+        return "newReview";
 
         //return new ResponseEntity<>(createdBook, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/saveBookReview")
+    public String saveBookReview(@ModelAttribute("book") Book book) {
+        bookServiceImpl.createBook(book);
+        return "redirect:/";
     }
 
     @PutMapping("/{id}")
@@ -80,5 +88,4 @@ public class BookController {
         long count = bookService.countBooksByAuthor(author);
         return new ResponseEntity<>(count, HttpStatus.OK);
     }
- */
 }

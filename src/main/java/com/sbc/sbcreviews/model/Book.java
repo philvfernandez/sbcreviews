@@ -3,8 +3,6 @@ package com.sbc.sbcreviews.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import org.hibernate.annotations.AttributeBinderType;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Objects;
 
@@ -13,7 +11,7 @@ import java.util.Objects;
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotBlank(message = "Title is required")
