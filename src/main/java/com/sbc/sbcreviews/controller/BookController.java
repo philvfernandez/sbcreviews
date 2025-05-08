@@ -49,7 +49,7 @@ public class BookController {
     @PostMapping("/saveBookReview")
     public String saveBookReview(@ModelAttribute("book") Book book) {
         bookServiceImpl.createBook(book);
-        return "redirect:/";
+        return "redirect:/getAllBooks";
     }
 
     @PutMapping("/{id}")
