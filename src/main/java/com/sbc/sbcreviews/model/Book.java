@@ -22,6 +22,10 @@ public class Book {
     @Column(nullable = false)
     private String author;
 
+    //@NotBlank(message = "ISBN is required")
+    @Column(nullable = true)
+    private String ISBN;
+
     @NotNull(message = "Publication Date is required")
     @Column(name = "\"publicationDate\"", nullable = false)
     private String publicationDate;
@@ -68,6 +72,14 @@ public class Book {
         this.author = author;
     }
 
+    public String getISBN() {
+        return ISBN;
+    }
+
+    public void setISBN(String ISBN) {
+        this.ISBN = ISBN;
+    }
+
     public String getPublicationDate() {
         return publicationDate;
     }
@@ -92,6 +104,7 @@ public class Book {
         return Objects.equals(id, book.id) &&
                 Objects.equals(title, book.title) &&
                 Objects.equals(author, book.author) &&
+                Objects.equals(ISBN, book.ISBN) &&
                 Objects.equals(publicationDate, book.publicationDate) &&
                 Objects.equals(review, book.review);
     }
@@ -102,7 +115,8 @@ public class Book {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
-                ", publicationDate=" + publicationDate +
+                ", ISBN='" + ISBN + '\'' +
+                ", publicationDate='" + publicationDate + '\'' +
                 ", review='" + review + '\'' +
                 '}';
     }
