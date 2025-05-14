@@ -52,11 +52,18 @@ public class BookController {
         return "redirect:/getAllBooks";
     }
 
-    @PutMapping("/{id}")
-    public String updateBook(@PathVariable(value = "id") Long id, Model model) {
+    @PutMapping("/edit/{id}")
+    public String showEditForm(@PathVariable Long id, Model model) {
         Book book = new Book();
         model.addAttribute("book", book);
-        return "update";
+        return "edit-book";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String updateBook(@PathVariable Long id, @ModelAttribute Book book) {
+        book.setId(id);
+        bookService.save(book);
+        return "redirect:/getAllBooks";
     }
 
     @DeleteMapping("/{id}")

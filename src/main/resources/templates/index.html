@@ -38,6 +38,7 @@
                                 <td th:text="${book.ISBN}"></td>
                                 <td th:text="${book.publicationDate}"></td>
                                 <td th:text="${book.review}"></td>
+                                <td><a th:href="@{/books/edit/{id}(id=${book.id})}">Edit Book</a> </td>
                             </tr>
                             </tbody>
                         </table>
