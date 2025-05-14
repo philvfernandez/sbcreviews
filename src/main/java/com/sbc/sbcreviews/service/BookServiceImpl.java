@@ -41,7 +41,7 @@ public class BookServiceImpl implements BookService {
         Book book = getBookById(id);
         book.setTitle(bookDetails.getTitle());
         book.setAuthor(bookDetails.getAuthor());
-        book.setYear(bookDetails.getYear());
+        book.setPublicationDate(bookDetails.getPublicationDate());
         book.setReview(bookDetails.getReview());
         return bookRepository.save(book);
     }
@@ -60,11 +60,6 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<Book> searchBooks(String keyword) {
         return bookRepository.searchBooks(keyword);
-    }
-
-    @Override
-    public List<Book> findRecentBooks() {
-        return bookRepository.findTop5ByOrderByYearDesc();
     }
 
     @Override

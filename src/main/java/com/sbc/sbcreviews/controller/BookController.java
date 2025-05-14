@@ -77,11 +77,13 @@ public class BookController {
         return new ResponseEntity<>(books, HttpStatus.OK);
     }
 
+    /*
     @GetMapping("/recent")
     public ResponseEntity<List<Book>> findRecentBooks() {
         List<Book> books = bookService.findRecentBooks();
         return new ResponseEntity<>(books, HttpStatus.OK);
     }
+     */
 
     @GetMapping("/count{author}")
     public ResponseEntity<Long> countBooksByAuthor(@PathVariable("author") String author) {

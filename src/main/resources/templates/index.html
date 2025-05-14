@@ -27,7 +27,7 @@
                             <tr>
                                 <th>Title</th>
                                 <th>Author</th>
-                                <th>Year</th>
+                                <th>Publication Date</th>
                                 <th>Reviews</th>
                             </tr>
                             </thead>
@@ -35,7 +35,7 @@
                             <tr th:each="book:${allBooks}">
                                 <td th:text="${book.title}"></td>
                                 <td th:text="${book.author}"></td>
-                                <td th:text="${book.year}"></td>
+                                <td th:text="${book.publicationDate}"></td>
                                 <td th:text="${book.review}"></td>
                             </tr>
                             </tbody>

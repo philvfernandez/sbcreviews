@@ -22,9 +22,9 @@ public class Book {
     @Column(nullable = false)
     private String author;
 
-    @NotNull(message = "Year is required")
-    @Column(name = "\"year\"", nullable = false)
-    private Integer year;
+    @NotNull(message = "Publication Date is required")
+    @Column(name = "\"publicationDate\"", nullable = false)
+    private String publicationDate;
 
     @Column(name = "\"review\"")
     private String review;
@@ -36,11 +36,11 @@ public class Book {
     }
 
     //Parameterized constructor
-    public Book(Long id, String title, String author, Integer year, String review) {
+    public Book(Long id, String title, String author, String publicationDate, String review) {
         this.id = id;
         this.title = title;
         this.author = author;
-        this.year = year;
+        this.publicationDate = publicationDate;
         this.review = review;
     }
 
@@ -68,12 +68,12 @@ public class Book {
         this.author = author;
     }
 
-    public Integer getYear() {
-        return year;
+    public String getPublicationDate() {
+        return publicationDate;
     }
 
-    public void setYear(Integer year) {
-        this.year = year;
+    public void setPublicationDate(String publicationDate) {
+        this.publicationDate = publicationDate;
     }
 
     public String getReview() {
@@ -92,7 +92,7 @@ public class Book {
         return Objects.equals(id, book.id) &&
                 Objects.equals(title, book.title) &&
                 Objects.equals(author, book.author) &&
-                Objects.equals(year, book.year) &&
+                Objects.equals(publicationDate, book.publicationDate) &&
                 Objects.equals(review, book.review);
     }
 
@@ -102,7 +102,7 @@ public class Book {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
-                ", year=" + year +
+                ", publicationDate=" + publicationDate +
                 ", review='" + review + '\'' +
                 '}';
     }

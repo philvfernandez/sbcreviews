@@ -12,6 +12,6 @@ public interface BookService {
     void deleteBook(Long id);
     List<Book> findBooksByAuthor(String author);
     List<Book> searchBooks(String keyword);
-    List<Book> findRecentBooks();
+    //List<Book> findRecentBooks();
     long countBooksByAuthor(String author);
 }

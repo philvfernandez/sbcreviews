@@ -15,7 +15,7 @@
         <form action="#" th:action="@{/saveBookReview}" th:object="${allBooks}" method="post">
                 <input type="text" th:field="*{title}" placeholder="Title" class="form-control mp-4 col-4">
                 <input type="text" th:field="*{author}" placeholder="Author" class="form-control mb-4 col-4">
-                <input type="number" th:field="*{year}" placeholder="Publish Year" class="form-control mb-4 col-4">
+                <input type="number" th:field="*{publicationDate}" placeholder="Publish Year" class="form-control mb-4 col-4">
                 <!-- input type="text" th:field="*{review}" placeholder="Review" class="form-control mb-4 col-4" -->
 
                 <!-- New Review Field -->
