@@ -52,9 +52,9 @@ public class BookController {
         return "redirect:/getAllBooks";
     }
 
-    @PutMapping("/edit/{id}")
+    @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable Long id, Model model) {
-        Book book = new Book();
+        Book book = bookService.getBookById(id);
         model.addAttribute("book", book);
         return "edit-book";
     }
