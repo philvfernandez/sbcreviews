@@ -23,12 +23,16 @@ public class Book {
     private String author;
 
     //@NotBlank(message = "ISBN is required")
-    @Column(nullable = true)
+    @Column(nullable = false)
     private String ISBN;
 
     @NotNull(message = "Publication Date is required")
     @Column(name = "\"publicationDate\"", nullable = false)
     private String publicationDate;
+
+    @NotNull(message = "Reviewer Is Required")
+    @Column(name = "\"reviewer\"", nullable = false)
+    private String reviewer;
 
     @Column(name = "\"review\"")
     private String review;
@@ -40,11 +44,12 @@ public class Book {
     }
 
     //Parameterized constructor
-    public Book(Long id, String title, String author, String publicationDate, String review) {
+    public Book(Long id, String title, String author, String publicationDate, String reviewer, String review) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.publicationDate = publicationDate;
+        this.reviewer = reviewer;
         this.review = review;
     }
 
@@ -88,6 +93,14 @@ public class Book {
         this.publicationDate = publicationDate;
     }
 
+    public String getReviewer() {
+        return reviewer;
+    }
+
+    public void setReviewer(String reviewer) {
+        this.reviewer = reviewer;
+    }
+
     public String getReview() {
         return review;
     }
@@ -106,6 +119,7 @@ public class Book {
                 Objects.equals(author, book.author) &&
                 Objects.equals(ISBN, book.ISBN) &&
                 Objects.equals(publicationDate, book.publicationDate) &&
+                Objects.equals(reviewer, book.reviewer) &&
                 Objects.equals(review, book.review);
     }
 
@@ -117,6 +131,7 @@ public class Book {
                 ", author='" + author + '\'' +
                 ", ISBN='" + ISBN + '\'' +
                 ", publicationDate='" + publicationDate + '\'' +
+                ", reviewer='" + reviewer + '\'' +
                 ", review='" + review + '\'' +
                 '}';
     }

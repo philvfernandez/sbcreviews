@@ -29,7 +29,7 @@ public class BookServiceImplTest {
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
-        testBook = new Book(1L, "Test Book", "Test Author", "2025", "My First Review");
+        testBook = new Book(1L, "Test Book", "Test Author", "2025", "Phil Fernandez", "My First Review");
         testBook.setId(1L);
     }
 
@@ -65,7 +65,7 @@ public class BookServiceImplTest {
 
     @Test
     void updateBook() {
-        Book updatedBook = new Book(1L, "Updated Test Book", "Test Author", "2025", "My Updated Review");
+        Book updatedBook = new Book(1L, "Updated Test Book", "Test Author", "2025", "Phil Fernandez", "My Updated Review");
         updatedBook.setId(1L);
         when(bookRepository.save(any(Book.class))).thenReturn(updatedBook);
         when(bookRepository.findById(1L)).thenReturn(java.util.Optional.of(testBook));

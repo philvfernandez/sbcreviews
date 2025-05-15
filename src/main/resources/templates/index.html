@@ -27,7 +27,9 @@
                             <tr>
                                 <th>Title</th>
                                 <th>Author</th>
+                                <th>ISBN</th>
                                 <th>Publication Date</th>
+                                <th>Reviewer</th>
                                 <th>Reviews</th>
                             </tr>
                             </thead>
@@ -37,6 +39,7 @@
                                 <td th:text="${book.author}"></td>
                                 <td th:text="${book.ISBN}"></td>
                                 <td th:text="${book.publicationDate}"></td>
+                                <td th:text="${book.reviewer}"></td>
                                 <td th:text="${book.review}"></td>
                                 <td><a th:href="@{/edit/{id}(id=${book.id})}">Edit Book</a> </td>
                             </tr>
