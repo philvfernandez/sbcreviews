@@ -30,6 +30,9 @@ public class Book {
     @Column(name = "\"publicationDate\"", nullable = false)
     private String publicationDate;
 
+    @Column(name = "\"rating\"",nullable = false)
+    private int rating;
+
     @NotNull(message = "Reviewer Is Required")
     @Column(name = "\"reviewer\"", nullable = false)
     private String reviewer;
@@ -44,11 +47,12 @@ public class Book {
     }
 
     //Parameterized constructor
-    public Book(Long id, String title, String author, String publicationDate, String reviewer, String review) {
+    public Book(Long id, String title, String author, String publicationDate, int rating, String reviewer, String review) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.publicationDate = publicationDate;
+        this.rating = rating;
         this.reviewer = reviewer;
         this.review = review;
     }
@@ -93,6 +97,14 @@ public class Book {
         this.publicationDate = publicationDate;
     }
 
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
     public String getReviewer() {
         return reviewer;
     }
@@ -119,6 +131,7 @@ public class Book {
                 Objects.equals(author, book.author) &&
                 Objects.equals(ISBN, book.ISBN) &&
                 Objects.equals(publicationDate, book.publicationDate) &&
+                Objects.equals(rating, book.rating) &&
                 Objects.equals(reviewer, book.reviewer) &&
                 Objects.equals(review, book.review);
     }
@@ -131,6 +144,7 @@ public class Book {
                 ", author='" + author + '\'' +
                 ", ISBN='" + ISBN + '\'' +
                 ", publicationDate='" + publicationDate + '\'' +
+                ", rating='" + rating + '\'' +
                 ", reviewer='" + reviewer + '\'' +
                 ", review='" + review + '\'' +
                 '}';

@@ -19,7 +19,7 @@
                     <a th:href="@{/addNewReview}" class="btn btn-primary">
                         <i class="fas fa-plus ml-2">Add a Book</i></a>
                 </p>
-                <div class="col-md-10">
+                <div class="col-md-15">
                     <h2 th:case="null">No Books Yet!</h2>
                     <div th:case="*">
                         <table class="table table-responsive-md">
@@ -28,6 +28,7 @@
                                 <th>Title</th>
                                 <th>Author</th>
                                 <th>ISBN</th>
+                                <th>Rating</th>
                                 <th>Publication Date</th>
                                 <th>Reviewer</th>
                                 <th>Reviews</th>
@@ -38,6 +39,11 @@
                                 <td th:text="${book.title}"></td>
                                 <td th:text="${book.author}"></td>
                                 <td th:text="${book.ISBN}"></td>
+                                <td>
+                                    <span th:each="i : ${#numbers.sequence(1,5)}">
+                                        <span th:text="*{i <= book.rating ? '★' : '☆'}"></span>
+                                    </span>
+                                </td>
                                 <td th:text="${book.publicationDate}"></td>
                                 <td th:text="${book.reviewer}"></td>
                                 <td th:text="${book.review}"></td>

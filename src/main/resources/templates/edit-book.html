@@ -16,11 +16,69 @@
             <input type="text" th:field="*{title}" placeholder="Title" class="form-control mp-4 col-4">
             <input type="text" th:field="*{author}" placeholder="Author" class="form-control mp-4 col-4">
             <input type="text" th:field="*{ISBN}" placeholder="ISBN" class="form-control mp-4 col-4">
+
+            <!-- Rating -->
+            <div class="star-rating">
+                <input type="radio" id="star5" name="star" value="5"><label for="star5">&#9733;</label>
+                <input type="radio" id="star4" name="star" value="4"><label for="star4">&#9733;</label>
+                <input type="radio" id="star3" name="star" value="3"><label for="star3">&#9733;</label>
+                <input type="radio" id="star2" name="star" value="2"><label for="star2">&#9733;</label>
+                <input type="radio" id="star1" name="star" value="1"><label for="star1">&#9733;</label>
+            </div>
+
             <input type="text" th:field="*{publicationDate}" placeholder="Publish Date" class="form-control mp-4 col-4">
             <input type="text" th:field="*{reviewer}" placeholder="Reviewer" class="form-control mp-4 col-4">
             <label>Review:<br/>
                 <textarea th:field="*{review}" rows="25" cols="75" placeholder="Write your review here..."></textarea>
             </label><br/>
+
+            <!-- For Rating -->
+            <!-- TODO: Move to a .css file -->
+            <style>
+                .star-rating {
+                    direction: rtl;
+                    font-size: 2em;
+                    unicode-bidi: bidi-override;
+                    display: inline-flex;
+                }
+                .star-rating input {
+                    display: none;
+                }
+                .star-rating label {
+                    color: lightgray;
+                    cursor: pointer;
+                }
+                .star-rating input:checked ~ label,
+                .star-rating label:hover,
+                .star-rating label:hover ~ label {
+                    color: gold;
+                }
+            </style>
+            <!-- Hidden field for binding -->
+            <input type="hidden" th:field="*{rating}" id="rating"/>
+
+            <script>
+                const ratingInput = document.getElementById('rating');
+                const starRadios = document.querySelectorAll('.star-rating input');
+
+                starRadios.forEach(radio => {
+                    radio.addEventListener('change',function () {
+                        ratingInput.value = this.value;
+                    });
+                });
+
+                //Optional: Pre-select stars if editing
+                document.addEventListener('DOMContentLoaded', function () {
+                    const currentRating = ratingInput.value;
+                    if(currentRating) {
+                        const radioToCheck = document.querySelector('.star-rating input[value="{${currentRating}"]');
+                        if(radioToCheck) {
+                            radioToCheck.ariaChecked = true;
+                        }
+                    }
+                });
+            </script>
+
             <button type="submit" class="btn btn-info col-2">Save Book Review</button>
         </form>
 
