@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>SBC Book Reviews</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="#">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <!-- link rel="stylesheet" href="../css/shards.min.css" -->
@@ -15,9 +16,18 @@
     <div class="container">
         <h1>Add Book Review</h1>
         <form action="#" th:action="@{/saveBookReview}" th:object="${allBooks}" method="post">
+                <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" style="color:red"></span>
                 <input type="text" th:field="*{title}" placeholder="Title" class="form-control mp-4 col-4">
+
+                <p></p>
+
+                <span th:if="${#fields.hasErrors('author')}" th:errors="*{author}" style="color:red"></span>
                 <input type="text" th:field="*{author}" placeholder="Author" class="form-control mb-4 col-4">
+
+                <span th:if="${#fields.errors('ISBN')}" th:errors="*{ISBN}" style="color: red"></span>
                 <input type="text" th:field="*{ISBN}" placeholder="ISBN" class="form-control mb4 col-4">
+
+                <p></p>
 
                 <h5>Rating</h5>
                 <div class="star-rating">
@@ -29,7 +39,10 @@
                 </div>
 
 
+                <div></div>
+                <span th:if="${#fields.errors('publicationDate')}" th:errors="*{publicationDate}" style="color: red"></span>
                 <input type="number" th:field="*{publicationDate}" placeholder="Publish Date" class="form-control mb-4 col-4">
+                <span th:if="${#fields.errors('reviewer')}" th:errors="*{reviewer}" style="color: red"></span>
                 <input type="text" th:field="*{reviewer}" placeholder="Reviewer" class="form-control mb-4 col-4">
 
                 <!-- New Review Field -->

@@ -3,11 +3,13 @@ package com.sbc.sbcreviews.controller;
 import com.sbc.sbcreviews.model.Book;
 import com.sbc.sbcreviews.service.BookService;
 import com.sbc.sbcreviews.service.BookServiceImpl;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,12 +44,13 @@ public class BookController {
         Book book = new Book();
         model.addAttribute("allBooks", book);
         return "newReview";
-
-        //return new ResponseEntity<>(createdBook, HttpStatus.CREATED);
     }
 
     @PostMapping("/saveBookReview")
-    public String saveBookReview(@ModelAttribute("book") Book book) {
+    public String saveBookReview(@Valid @ModelAttribute("allBooks") Book book, BindingResult result, Model model) {
+        if(result.hasErrors()) {
+            return "newReview";
+        }
         bookServiceImpl.createBook(book);
         return "redirect:/getAllBooks";
     }
@@ -60,7 +63,11 @@ public class BookController {
     }
 
     @PostMapping("/edit/{id}")
-    public String updateBook(@PathVariable Long id, @ModelAttribute Book book) {
+    public String updateBook(@Valid @PathVariable Long id, @ModelAttribute Book book, BindingResult result, Model model) {
+        if(result.hasErrors()) {
+            model.addAttribute("book",book);
+            return "edit-book";
+        }
         book.setId(id);
         bookService.save(book);
         return "redirect:/getAllBooks";

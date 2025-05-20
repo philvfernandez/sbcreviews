@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>SBC Book Reviews</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="#">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <!-- link rel="stylesheet" href="../css/shards.min.css" -->
@@ -14,8 +15,11 @@
         <h1>Edit Book</h1>
         <form action="#" th:action="@{/edit/{id}(id=${book.id})}" th:object="${book}" method="post">
             <input type="text" th:field="*{title}" placeholder="Title" class="form-control mp-4 col-4">
+            <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" style="color: red"></span>
             <input type="text" th:field="*{author}" placeholder="Author" class="form-control mp-4 col-4">
+            <span th:if="${#fields.hasErrors('author')}" th:errors="*{author}" style="color: red"></span>
             <input type="text" th:field="*{ISBN}" placeholder="ISBN" class="form-control mp-4 col-4">
+            <span th:if="${#fields.hasErrors('ISBN')}" th:errors="*{ISBN}" style="color: red"></span>
 
             <!-- Rating -->
             <div class="star-rating">
@@ -27,7 +31,9 @@
             </div>
 
             <input type="text" th:field="*{publicationDate}" placeholder="Publish Date" class="form-control mp-4 col-4">
+            <span th:if="${#fields.hasErrors('publicationDate')}" th:errors="*{publicationDate}" style="color: red"></span>
             <input type="text" th:field="*{reviewer}" placeholder="Reviewer" class="form-control mp-4 col-4">
+            <span th:if="${#fields.hasErrors('reviewer')}" th:errors="*{reviewer}" style="color: red"></span>
             <label>Review:<br/>
                 <textarea th:field="*{review}" rows="25" cols="75" placeholder="Write your review here..."></textarea>
             </label><br/>

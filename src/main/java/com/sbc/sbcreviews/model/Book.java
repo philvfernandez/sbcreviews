@@ -14,30 +14,28 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotBlank(message = "Title is required")
-    @Column(nullable = false)
+    @NotBlank(message = "Title Is Required")
+    @Column(name = "\"title\"")
     private String title;
 
-    @NotBlank(message = "Author is required")
-    @Column(nullable = false)
+    @NotBlank(message = "Author Is Required")
+    @Column(name = "\"author\"")
     private String author;
 
-    //@NotBlank(message = "ISBN is required")
-    @Column(nullable = false)
+    @NotBlank(message = "ISBN Is Required")
+    @Column(name = "\"ISBN\"")
     private String ISBN;
 
-    @NotNull(message = "Publication Date is required")
-    @Column(name = "\"publicationDate\"", nullable = false)
+    @NotBlank(message = "Publication Date Is Required")
+    @Column(name = "\"publicationDate\"")
     private String publicationDate;
 
-    @Column(name = "\"rating\"",nullable = false)
     private int rating;
 
-    @NotNull(message = "Reviewer Is Required")
-    @Column(name = "\"reviewer\"", nullable = false)
+    @NotBlank(message = "Reviewer Is Required")
+    @Column(name = "\"reviewer\"")
     private String reviewer;
 
-    @Column(name = "\"review\"")
     private String review;
 
 
