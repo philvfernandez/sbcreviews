@@ -14,12 +14,20 @@
     <div class="container">
         <h1>Edit Book</h1>
         <form action="#" th:action="@{/edit/{id}(id=${book.id})}" th:object="${book}" method="post">
-            <input type="text" th:field="*{title}" placeholder="Title" class="form-control mp-4 col-4">
             <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" style="color: red"></span>
-            <input type="text" th:field="*{author}" placeholder="Author" class="form-control mp-4 col-4">
+            <input type="text" th:field="*{title}" placeholder="Title" class="form-control mp-4 col-4">
+
+            <p></p>
+
             <span th:if="${#fields.hasErrors('author')}" th:errors="*{author}" style="color: red"></span>
-            <input type="text" th:field="*{ISBN}" placeholder="ISBN" class="form-control mp-4 col-4">
+            <input type="text" th:field="*{author}" placeholder="Author" class="form-control mp-4 col-4">
+
+            <p></p>
+
             <span th:if="${#fields.hasErrors('ISBN')}" th:errors="*{ISBN}" style="color: red"></span>
+            <input type="text" th:field="*{ISBN}" placeholder="ISBN" class="form-control mp-4 col-4">
+
+            <p></p>
 
             <!-- Rating -->
             <div class="star-rating">
@@ -30,10 +38,16 @@
                 <input type="radio" id="star1" name="star" value="1"><label for="star1">&#9733;</label>
             </div>
 
-            <input type="text" th:field="*{publicationDate}" placeholder="Publish Date" class="form-control mp-4 col-4">
             <span th:if="${#fields.hasErrors('publicationDate')}" th:errors="*{publicationDate}" style="color: red"></span>
-            <input type="text" th:field="*{reviewer}" placeholder="Reviewer" class="form-control mp-4 col-4">
+            <input type="text" th:field="*{publicationDate}" placeholder="Publish Date" class="form-control mp-4 col-4">
+
+            <p></p>
+
             <span th:if="${#fields.hasErrors('reviewer')}" th:errors="*{reviewer}" style="color: red"></span>
+            <input type="text" th:field="*{reviewer}" placeholder="Reviewer" class="form-control mp-4 col-4">
+
+            <p></p>
+
             <label>Review:<br/>
                 <textarea th:field="*{review}" rows="25" cols="75" placeholder="Write your review here..."></textarea>
             </label><br/>
