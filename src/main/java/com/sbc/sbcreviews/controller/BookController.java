@@ -73,10 +73,10 @@ public class BookController {
         return "redirect:/getAllBooks";
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteBook(@PathVariable(value = "id") Long id) {
+    @PostMapping("/delete/{id}")
+    public String deleteBook(@PathVariable Long id) {
         bookService.deleteBook(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return "redirect:/getAllBooks";
     }
 
     @GetMapping("/author/{author}")

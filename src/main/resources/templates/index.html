@@ -49,6 +49,12 @@
                                 <td th:text="${book.reviewer}"></td>
                                 <td th:text="${book.review}"></td>
                                 <td><a th:href="@{/edit/{id}(id=${book.id})}">Edit Book</a> </td>
+                                <td>
+                                    <form th:action="@{/delete/{id}(id=${book.id})}" method="post"
+                                        th:onsubmit="return confirm('Delete this book?');" style="display:inline;">
+                                        <input type="submit" value="Delete"/>
+                                    </form>
+                                </td>
                             </tr>
                             </tbody>
                         </table>
