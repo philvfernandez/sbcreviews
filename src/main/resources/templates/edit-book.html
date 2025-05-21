@@ -14,22 +14,23 @@
     <div class="container">
         <h1>Edit Book</h1>
         <form action="#" th:action="@{/edit/{id}(id=${book.id})}" th:object="${book}" method="post">
-            <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" style="color: red"></span>
+            <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" style="color:red"></span>
             <input type="text" th:field="*{title}" placeholder="Title" class="form-control mp-4 col-4">
 
             <p></p>
 
-            <span th:if="${#fields.hasErrors('author')}" th:errors="*{author}" style="color: red"></span>
+            <span th:if="${#fields.hasErrors('author')}" th:errors="*{author}" style="color:red"></span>
             <input type="text" th:field="*{author}" placeholder="Author" class="form-control mp-4 col-4">
 
             <p></p>
 
-            <span th:if="${#fields.hasErrors('ISBN')}" th:errors="*{ISBN}" style="color: red"></span>
+            <span th:if="${#fields.hasErrors('ISBN')}" th:errors="*{ISBN}" style="color:red"></span>
             <input type="text" th:field="*{ISBN}" placeholder="ISBN" class="form-control mp-4 col-4">
 
             <p></p>
 
             <!-- Rating -->
+            <h5>Rating</h5>
             <div class="star-rating">
                 <input type="radio" id="star5" name="star" value="5"><label for="star5">&#9733;</label>
                 <input type="radio" id="star4" name="star" value="4"><label for="star4">&#9733;</label>
@@ -37,13 +38,14 @@
                 <input type="radio" id="star2" name="star" value="2"><label for="star2">&#9733;</label>
                 <input type="radio" id="star1" name="star" value="1"><label for="star1">&#9733;</label>
             </div>
+            <div></div>
 
-            <span th:if="${#fields.hasErrors('publicationDate')}" th:errors="*{publicationDate}" style="color: red"></span>
+            <span th:if="${#fields.hasErrors('publicationDate')}" th:errors="*{publicationDate}" style="color:red"></span>
             <input type="text" th:field="*{publicationDate}" placeholder="Publish Date" class="form-control mp-4 col-4">
 
             <p></p>
 
-            <span th:if="${#fields.hasErrors('reviewer')}" th:errors="*{reviewer}" style="color: red"></span>
+            <span th:if="${#fields.hasErrors('reviewer')}" th:errors="*{reviewer}" style="color:red"></span>
             <input type="text" th:field="*{reviewer}" placeholder="Reviewer" class="form-control mp-4 col-4">
 
             <p></p>

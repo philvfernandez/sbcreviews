@@ -47,7 +47,7 @@ public class BookController {
     }
 
     @PostMapping("/saveBookReview")
-    public String saveBookReview(@Valid @ModelAttribute("allBooks") Book book, BindingResult result, Model model) {
+    public String saveBookReview(@Valid @ModelAttribute("allBooks") Book book, BindingResult result) {
         if(result.hasErrors()) {
             return "newReview";
         }
@@ -63,9 +63,9 @@ public class BookController {
     }
 
     @PostMapping("/edit/{id}")
-    public String updateBook(@Valid @PathVariable Long id, @ModelAttribute Book book, BindingResult result, Model model) {
+    public String updateBook(@PathVariable Long id, @Valid @ModelAttribute Book book, BindingResult result, Model model) {
         if(result.hasErrors()) {
-            model.addAttribute("book",book);
+            model.addAttribute("book", book);
             return "edit-book";
         }
         book.setId(id);
