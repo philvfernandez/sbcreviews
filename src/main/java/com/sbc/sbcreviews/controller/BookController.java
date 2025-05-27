@@ -28,9 +28,15 @@ public class BookController {
     private BookServiceImpl bookServiceImpl;
 
     @GetMapping("/getAllBooks")
-    public String getAllBook(Model model) {
-        List<Book> books = bookService.getAllBooks();
+    public String getAllBook(
+            @RequestParam(defaultValue = "title") String sortField,
+            @RequestParam(defaultValue = "asc") String sortDir,
+            Model model) {
+        List<Book> books = bookService.getAllBooksSorted(sortField,sortDir);
         model.addAttribute("allBooks", books);
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("reverseDir", sortDir.equals("asc") ? "desc" : "asc");
         return "index.html";
     }
     @GetMapping("/{id}")
@@ -90,14 +96,6 @@ public class BookController {
         List<Book> books = bookService.searchBooks(keyword);
         return new ResponseEntity<>(books, HttpStatus.OK);
     }
-
-    /*
-    @GetMapping("/recent")
-    public ResponseEntity<List<Book>> findRecentBooks() {
-        List<Book> books = bookService.findRecentBooks();
-        return new ResponseEntity<>(books, HttpStatus.OK);
-    }
-     */
 
     @GetMapping("/count{author}")
     public ResponseEntity<Long> countBooksByAuthor(@PathVariable("author") String author) {

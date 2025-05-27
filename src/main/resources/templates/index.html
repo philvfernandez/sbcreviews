@@ -26,12 +26,30 @@
                         <table class="table table-responsive-md">
                             <thead>
                             <tr>
-                                <th>Title</th>
-                                <th>Author</th>
-                                <th>ISBN</th>
-                                <th>Rating</th>
-                                <th>Publication Date</th>
-                                <th>Reviewer</th>
+                                <th>
+                                    <span th:if="${sortField == 'title'}" th:text="${sortDir == 'asc' ? '↑' : '↓'}"></span>
+                                    <a th:href="@{'/getAllBooks'(sortField='title', sortDir=${reverseSortDir})}">Title</a>
+                                </th>
+                                <th>
+                                    <span th:if="${sortField == 'author'}" th:text="${sortDir == 'asc' ? '↑' : '↓'}"></span>
+                                    <a th:href="@{'/getAllBooks'(sortField='author', sortDir=${reverseSortDir})}">Author</a>
+                                </th>
+                                <th>
+                                    <span th:if="${sortField == 'ISBN'}" th:text="${sortDir == 'asc' ? '↑' : '↓'}"></span>
+                                    <a th:href="@{'/getAllBooks'(sortField='ISBN', sortDir=${reverseSortDir})}">ISBN</a>
+                                </th>
+                                <th>
+                                    <span th:if="${sortField == 'rating'}" th:text="${sortDir == 'asc' ? '↑' : '↓'}"></span>
+                                    <a th:href="@{'/getAllBooks'(sortField='rating', sortDir=${reverseSortDir})}">Rating</a>
+                                </th>
+                                <th>
+                                    <span th:if="${sortField == 'pubDate'}" th:text="${sortDir == 'asc' ? '↑' : '↓'}"></span>
+                                    <a th:href="@{'/getAllBooks'(sortField='publicationDate', sortDir=${reverseSortDir})}">Publication Date</a>
+                                </th>
+                                <th>
+                                    <span th:if="${sortField == 'reviewer'}" th:text="${sortDir == 'asc' ? '↑' : '↓'}"></span>
+                                    <a th:href="@{'/getAllBooks'(sortField='reviewer', sortDir=${reverseSortDir})}">Reviewer</a>
+                                </th>
                                 <th>Reviews</th>
                             </tr>
                             </thead>

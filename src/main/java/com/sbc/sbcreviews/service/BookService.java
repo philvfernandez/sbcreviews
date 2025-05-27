@@ -15,4 +15,5 @@ public interface BookService {
     List<Book> searchBooks(String keyword);
     //List<Book> findRecentBooks();
     long countBooksByAuthor(String author);
+    public List<Book> getAllBooksSorted(String sortField, String sortDir);
 }
