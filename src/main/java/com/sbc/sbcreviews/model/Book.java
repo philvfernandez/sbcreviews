@@ -36,6 +36,8 @@ public class Book {
     @Column(name = "\"reviewer\"")
     private String reviewer;
 
+    @Lob
+    @Column(length = 10000) //Adjust as needed
     private String review;
 
 
