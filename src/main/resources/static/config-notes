@@ -1,0 +1,32 @@
+SBC Book Review App Config Notes:
+
+Docker Info:
+
+docker run -d \
+  --name mariadb \
+  -e MYSQL_ROOT_PASSWORD=root \
+  -e MYSQL_DATABASE=sbcreviews \
+  -e MYSQL_USER=sbcuser \
+  -e MYSQL_PASSWORD=sbcuser \
+  -p 3306:3306 \
+  mariadb:10.11
+
+  verify user:
+  docker exec -it mariadb mysql -u sbcuser -psbcuser sbcreviews
+
+  Clear out broken containers, images, volumes and networks:
+  Note: Be careful.  This deletes all stopped containers, dangling images, networks and volumes not used by a container.
+  docker system prune -a --volumes -f
+
+  List containers:
+  docker ps -a
+
+  Remove a container:
+  docker rm -f b1ebab3b2f66_
+
+
+  Rebuild everything from sratch:
+  Note: -DskipTests build/packages project w/o running tests.  This may help to prevent errors when running the docker-compose build command.
+    ./mvnw clean package -DskipTests
+    docker-compose build --no-cache
+    docker-compose up
