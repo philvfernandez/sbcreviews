@@ -22,7 +22,7 @@ public class Book {
     @Column(name = "\"author\"")
     private String author;
 
-    @NotBlank(message = "ISBN Is Required")
+    // @NotBlank(message = "ISBN Is Required")
     @Column(name = "\"ISBN\"")
     private String ISBN;
 
