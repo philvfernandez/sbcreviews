@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Book List</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<h1>My Book List</h1>
+
+<!-- Add Book Form -->
+<form th:action="@{|/user/${userId}/booklist|}" method="post">
+    <label for="bookId">Select a Book:</label>
+    <select th:field="*{bookId}">
+        <option th:each="book : ${allBooks}" th:value="${book.id}" th:text="${book.title}"}></option>
+    </select>
+
+    <label for="status">Status:</label>
+    <select th:field="*{status}">
+        <option value="READING">Reading</option>
+        <option value="Completed">Completed</option>
+        <option value="WISHLIST">Wishlist</option>
+    </select>
+
+    <button type="submit">Add</button>
+</form>
+
+<hr />
+
+<!-- User Book List -->
+<table>
+    <thead>
+        <tr>
+            <th>Book</th>
+            <th>Status</th>
+            <th>Update</th>
+            <th>Remove</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="entry : ${books}">
+            <td th:text="${#lists.find(allBooks, b -> b.id == entry.bookId)?.title}">Book Title</td>
+            <td th:text="${entry.status}">Status</td>
+            <td>
+                <form th:action="@{|/user/${userId}/booklist/${entry.id}/status|}" method="post">
+                    <select name="status">
+                        <option value="READING">Reading</option>
+                        <option value="COMPLETED">Completed</option>
+                        <option value="WISHLIST">Wishlist</option>
+                    </select>
+                    <button type="submit">Update</button>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{|/user/${userId}/booklist/${entry.id}/delete|}" method="post">
+                    <button type="submit">Remove</button>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>
